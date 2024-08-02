@@ -12,18 +12,21 @@ import java.util.Locale;
 public class TimeUtil {
     private static final long SECONDS_THRESHOLD = 10000000000L;
     public static String convertTimestamp(long Timestamp) {
+        // 转换秒/毫秒
         boolean isMillisecond = Timestamp > SECONDS_THRESHOLD;
         long adjustedTimestamp = isMillisecond ? Timestamp : Timestamp * 1000;
-
+        // 解析传入的时间
         Date date = new Date(adjustedTimestamp);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-
+        // 返回格式化后的时间字符串
         return formatter.format(date);
     }
     public static long convertDataTime(String dateTimeStr) {
+        // 预设时间格式
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         try {
+            // 尝试转换
             Date date = formatter.parse(dateTimeStr);
             return date.getTime();
         } catch (Exception e) {

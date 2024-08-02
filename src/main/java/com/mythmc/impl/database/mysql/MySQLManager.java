@@ -209,7 +209,7 @@ public class MySQLManager implements DbManager {
 
 
     /**
-     * 检查玩家是否存在于数据库中。
+     * 检查玩家是否存在于奖励数据库中。
      *
      * @param playerName 玩家名称
      * @return 如果玩家存在则返回 true，反之返回 false
@@ -230,7 +230,7 @@ public class MySQLManager implements DbManager {
         return false; // 出现异常或无结果返回 false
     }
     /**
-     * 检查玩家是否存在于数据库中。
+     * 检查玩家是否存在于顶贴记录数据库中。
      *
      * @param playerName 玩家名称
      * @return 如果玩家存在则返回 true，反之返回 false

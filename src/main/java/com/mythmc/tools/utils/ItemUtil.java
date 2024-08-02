@@ -28,6 +28,7 @@ public class ItemUtil {
                 itemStack = new ItemStack(Material.BEDROCK);
             }
         } else {
+            // 获取玩家头颅材质
             itemStack = getSkullItemStack(player, mat);
         }
         return itemStack;

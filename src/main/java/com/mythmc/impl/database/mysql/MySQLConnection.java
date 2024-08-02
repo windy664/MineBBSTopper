@@ -22,6 +22,7 @@ public class MySQLConnection {
         }
     }
     public static HikariConfig getHikariConfig() {
+        // 新建连接池配置
         HikariConfig config = new HikariConfig();
 
         // 连接字符串参数
@@ -36,6 +37,7 @@ public class MySQLConnection {
                 + "&allowPublicKeyRetrieval=true" // 允许公钥检索以支持旧认证插件
                 + "&serverTimezone=UTC"; // 设置时区，以避免与时间相关的问题
 
+        // 设置连接池参数
         config.setJdbcUrl(jdbcUrl);
         config.setUsername(ConfigFile.MySQLUser);
         config.setPassword(ConfigFile.MySQLPassword);

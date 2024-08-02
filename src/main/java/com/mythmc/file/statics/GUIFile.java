@@ -29,7 +29,6 @@ public class GUIFile {
         // 主菜单的配置
         mainMenuName = ColorUtil.colorize(mainMenu.getString("Menu.title"));
         mainMenuSize = mainMenu.getInt("Menu.size");
-       // mainMenuOpenSound = mainMenu.getString("Menu.sound");
         mainMenuItems = mainMenu.getConfigurationSection("Menu.items");
         mainMenuEvents = mainMenu.getConfigurationSection("Menu.events");
         rankFormat = ColorUtil.colorize(mainMenu.getString("Menu.rankFormat"));
@@ -39,7 +38,6 @@ public class GUIFile {
         rewardMenuEvents = rewardMenu.getConfigurationSection("Menu.events");
         rewardMenuName = ColorUtil.colorize(rewardMenu.getString("Menu.title"));
         rewardMenuSize = rewardMenu.getInt("Menu.size");
-       // rewardMenuOpenSound = rewardMenu.getString("Menu.sound");
         rewardMenuEnable = rewardMenu.getBoolean("Enable",true);
         rewardMenuStatusYes = ColorUtil.colorize(rewardMenu.getString("Status.yes"));
         rewardMenuStatusNo = ColorUtil.colorize(rewardMenu.getString("Status.no"));

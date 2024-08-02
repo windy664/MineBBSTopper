@@ -53,11 +53,12 @@ public class PlaceholderHook extends PlaceholderExpansion {
 
     @Override
     public String onPlaceholderRequest(Player player, String params) {
+        // 分割字符串
         String[] parts = params.split("_");
-
+        // 获取对象
         PlayerInfo playerInfo = TargetManager.getPlayerInfo(player);
         GlobalInfo globalInfo = TargetManager.getGlobalInfo();
-
+        // 根据参数长度
         switch (parts.length) {
             case 1:
                 return handleSingleParam(parts[0], playerInfo, globalInfo);

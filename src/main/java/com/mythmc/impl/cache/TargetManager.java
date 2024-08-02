@@ -33,7 +33,7 @@ public class TargetManager {
     public static GlobalInfo getGlobalInfo() {
         return globalInfoCache;
     }
-
+    // 暂无用处
     public static void refreshGlobalInfo() {
         getGlobalInfo().loadInitialData();
     }

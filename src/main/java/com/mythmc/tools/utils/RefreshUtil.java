@@ -33,6 +33,7 @@ public class RefreshUtil {
     }
 
     private long calculateInitialDelay() {
+        // 计算到24点的时间
         Calendar now = Calendar.getInstance();
         Calendar nextMidnight = (Calendar) now.clone();
         nextMidnight.set(Calendar.HOUR_OF_DAY, 0);
@@ -47,7 +48,7 @@ public class RefreshUtil {
     }
 
     private void refreshData() {
-        // 刷新每日玩家记录
+        // 刷新每日玩家顶贴记录
         TargetManager.clearPlayerInfoCache();
         plugin.logger("§a任务 §8| §6每天0点执行的刷新任务已经运行，玩家当日顶贴次数已重置");
     }

@@ -15,6 +15,7 @@ public class ConditionUtil {
         Matcher matcher = pattern.matcher(condition);
 
         if (matcher.find()) {
+            // 解析要比较的部分
             String leftOperand = matcher.group(1).trim();
             String operator = matcher.group(2).trim();
             String rightOperand = matcher.group(3).trim();

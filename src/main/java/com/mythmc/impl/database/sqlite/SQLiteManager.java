@@ -15,7 +15,9 @@ import java.util.List;
 public class SQLiteManager implements DbManager {
     public static Connection connection;
 
-
+    /**
+     * 注释请参考 MySQLManager 三个都一样的
+     */
     public void createTable() {
         try {
             String url = "jdbc:sqlite:" + DatabaseManager.dbPath;

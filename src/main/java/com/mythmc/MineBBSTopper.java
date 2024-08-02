@@ -35,7 +35,7 @@ public final class MineBBSTopper extends JavaPlugin {
     @Override
     public void onEnable() {
         long startTime = System.currentTimeMillis();
-        //
+
         instance = this;
         this.pluginBanner();
         (new AutoUpdater(this)).start();

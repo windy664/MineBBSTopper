@@ -25,21 +25,29 @@ public class DatabaseManager {
     private static volatile DbManager dbManager = null;
     public static String dbPath = null;
 
-    public  void initialize(String type) {
+    public void initialize(String type) {
+        // 如果 dbManager 为空
         if (dbManager == null) {
+            // 对 DatabaseManager 类进行同步，以确保线程安全
             synchronized (DatabaseManager.class) {
+                // 再次检查 dbManager 是否为空，以防多个线程同时进入此块
                 if (dbManager == null) {
+                    // 根据传入的 type 参数选择数据库管理器的类型
                     switch (type) {
                         case "mysql":
+                            // 如果 type 为 mysql，创建 MySQLManager 实例
                             dbManager = new MySQLManager();
                             break;
                         case "sqlite":
+                            // 如果 type 为 sqlite，创建 SQLiteManager 实例
                             dbManager = new SQLiteManager();
                             break;
                         case "yaml":
+                            // 如果 type 为 yaml，创建 YamlManager 实例
                             dbManager = new YamlManager();
                             break;
                         default:
+                            // 如果 type 不匹配任何已知类型，记录警告日志并禁用插件
                             plugin.logger("§c警告 §7| §c无法正确加载名为 §f" + ConfigFile.DataType + " §c的数据库");
                             plugin.getPluginLoader().disablePlugin(plugin);
                     }
@@ -51,6 +59,7 @@ public class DatabaseManager {
     public void load() {
         plugin.logger("§6数据 §8| §a当前选择的数据库为: " + ConfigFile.DataType);
         String type = ConfigFile.DataType.toLowerCase();
+        // 初始化数据库
         initialize(type);
 
         switch (type) {
@@ -80,12 +89,14 @@ public class DatabaseManager {
         writeOnlinePlayerRewardData();
     }
     private void writeOnlinePlayerRewardData() {
+        // 适用于热加载插件时。写入数据，避免出现报错
         Bukkit.getOnlinePlayers().stream()
                 .map(Player::getName)
                 .filter(name -> !dbManager.playerRewardExists(name))
                 .forEach(name -> dbManager.insertRewardData(name));
     }
     public void close() {
+        // 关闭数据库链接
         String type = ConfigFile.DataType.toLowerCase();
         switch (type) {
             case "mysql":
