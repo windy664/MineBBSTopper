@@ -1,0 +1,147 @@
+Menu:
+  # 支持自动解析PlaceholderAPI占位符
+  # 支持解析hex彩色文本 格式为 #xxxxxx
+  # 注意，插件内置的两个菜单，标题title不能相同！否则会失效！！！
+  title: "#000000MineBBS-顶贴系统"
+  # 支持大小 9,18,27,36,45,54
+  size: 27
+  # 打开或关闭此菜单执行的动作，支持条件运算
+  events:
+    open:
+      - "[sound]BLOCK_ANVIL_LAND"
+    close:
+      - "[sound]UI_BUTTON_CLICK"
+  # 用于显示在排行榜上的格式
+  # lore上使用 %rank% 即可展示
+  # 使用papi %minebbstopper_rank_<1-10位次>% 可显示到悬浮字上
+  # 排行榜有刷新间隔，可在config.yml内配置
+  rankFormat: " &7玩家:&a%player% &7- 次数:&b%count%"
+  # 菜单的物品配置。可自行添加
+  items:
+    # 可无限制添加物品配置节点
+    info:
+      # 支持自动解析PlaceholderAPI占位符
+      name: "&6本服的宣传贴链接"
+      # 物品的材质，不区分大小写，若物品不支持则会显示基岩
+      # 查看可用枚举值：https://pastebin.com/Fe65HZnN
+      # ==========================================
+      # 如需使用玩家头颅，mat有三种配置方法：
+      # 1. head:%player% 显示自己的头颅
+      # 2. head:Dream 显示玩家名为Dream的头颅
+      # 3. head:BASE64格式 显示以BASE64格式编码的头颅
+      # ==========================================
+      # 注意：1.12的catserver 用不了头颅功能，否则会报错
+      #      如果卡顿，请别配置头颅！
+      mat: "DIAMOND"
+      # 支持多个槽位设置，请用列表写法
+      # eg: [11, 12, 13, 14, 15]
+      slot: 10
+      # 1.13版本以上的CustomModelData自定义物品材质的值
+      # 不设置默认为 0
+      cmd: 0
+      # 物品的数量
+      # 不设置默认为 1
+      amount: 1
+      # 物品的描述，支持自动解析PlaceholderAPI占位符
+      # 若不需要lore 则设为 lore: [] 即可
+      lore:
+        - " "
+        - "&7在MineBBS上助力服务器宣传"
+        - " "
+        - "&e点击即可获取顶贴链接！"
+      #============================================================
+      # 可用的动作类型：如果没有安装PlaceholderAPI，则使用%player%代表玩家名
+      #============================================================
+      # [console]give %player_name% diamond -> 以控制台身份执行指令
+      # [player]minebbstopper open -> 以玩家身份执行指令
+      # [op]kit new -> 以op身份执行指令。不建议使用！原理是给予op，执行指令后撤销op。！！若是使用以后出现问题别怪我没提醒过你！！
+      # [tell]你的内容\n下一行的内容 -> 向玩家发送消息，可使用\n可换行
+      # [broadcast]你的内容 -> 向全体玩家发送广播消息。若开启BC，则自动会将广播消息发送至所有子服（前提需安装本插件）
+      # [delay]10 -> 对后面的操作进行延迟操作。单位：秒
+      # [give-money]100.55 -> 给予玩家金币数量。或随机值配置：100.55-200.55
+      # [give-points]10 -> 给予玩家点券数量。只能接着整数值，否则发放失败！！！或随机值配置：100-200
+      # [title]主标题内容 副标题内容 进入时间 停留时间 淡出时间 -> 给玩家发送标题，空格分割参数。时间单位：tick
+      # [bossbar]内容 颜色 持续时间 -> 给玩家展示BOSSBAR。颜色可选值为：PINK,BLUE,RED,GREEN,YELLOW,PURPLE,WHITE；时间单位：秒
+      # [sound]xxx -> 查看可用音效：https://pastebin.com/EfQKLUuN
+      # [connect]xx服务器 -> 让玩家连接xx服务器，BC专属
+      # [close] -> 关闭菜单
+      # [open]main -> 目前有两个菜单 main或reward可选
+      #===========================================================
+      # 支持6种条件运算符：> < >= <= != ==
+      # 自动解析PlaceholderAPI占位符进行比较
+      # 如果匹配，则执行对应的动作。不匹配，则不执行。
+      #===========================================================
+      #
+      # @condition: 内容 运算符 内容  空格不敏感
+      #
+      # [tell]测试的数字大于等于100@condition:%player_level% >= %player_level%
+      # [tell]测试的数字小于100@condition:%player_level% < 100
+      # [tell]测试的数字等于100@condition:%player_level% == 100
+      # [tell]测试的字符串相等@condition:%player_name% == TEST_NAME
+      # [tell]测试的字符串不相等@condition:%player% != TEST_NAME
+      # [tell]玩家有minebbstopper.test权限@condition:%player_has_permission_minebbstopper.test% == yes
+      #=============================================================
+      commands:
+        - "[close]"
+        - "[tell]本服务器的宣传地址为: %serverUrl%"
+    player:
+      name: "&6您的顶贴信息"
+      mat: "paper" # head:%player%
+      slot: 12
+      lore:
+        - " "
+        - "&7你的顶贴次数: %amount%"
+        - "&7上次顶贴时间: %lasttime%"
+        - " "
+        - "&e助力服务器宣传获丰厚奖励！"
+      commands:
+        - "[close]"
+    rank:
+      name: "&6顶贴排行榜" # &a总顶贴：%minebbstopper_all%
+      mat: "LADDER"
+      slot: 14
+      lore:
+        - " "
+        - "&8&o(每半小时刷新一次)"
+        - "&7%rank%"
+        - " "
+        # 下面的颜色代码用这个§符号替换&，用法和&一样的
+        - "§a点击查看累计顶贴奖励"
+      commands:
+        - "[close]"
+        - "[open]reward"
+    tech:
+      name: "&6顶贴教程"
+      mat: "BOOK"
+      slot: 16
+      lore:
+        - " "
+        - "&7手把手顶贴教学"
+        - " "
+        - "&e点击打开顶贴教程！"
+      commands:
+        - "[close]"
+        - "[tell]教程地址为: %techUrl%"
+    claim:
+      name: "&6领取顶贴奖励"
+      mat: "NETHER_STAR"
+      slot: 22
+      lore:
+        - " "
+        - "&7在顶贴后的&c十分钟内&7可领取"
+        - "&c超过领取时间的奖励无效"
+        - ""
+        - "&f当前是否可顶贴: %cantop%"
+        - "&7冷却时间：%cooldown%"
+        - ""
+        - "&a点击即可领取奖励"
+      commands:
+        - "[close]"
+        - "[player]minebbstopper claim"
+    frame:
+      name: "&6边框"
+      mat: "BLUE_STAINED_GLASS_PANE"
+      slot: [0,1,2,3,4,5,6,7,8,9,11,13,15,17,18,19,20,21,23,24,25,26]
+      lore: []
+      commands:
+        - "[sound]UI_BUTTON_CLICK"

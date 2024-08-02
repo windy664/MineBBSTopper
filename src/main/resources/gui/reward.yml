@@ -1,0 +1,175 @@
+# 不需要这个系统可以关掉
+Enable: true
+# 奖励状态配置，变量%status%用于lore之中
+Status:
+  "yes": '&a您可以领取累计顶贴%count%次奖励'
+  "no": '&7进度：&a%current% / %count% 次'
+  "claimed": '&c您已经领取过这个奖励了'
+
+Menu:
+  # 支持自动解析PlaceholderAPI占位符
+  title: "#000000MineBBS-累计奖励"
+  # 支持大小 9,18,27,36,45,54
+  size: 27
+  # 打开或关闭此菜单执行的动作，支持条件运算
+  events:
+    open:
+      - "[sound]BLOCK_ANVIL_LAND"
+    close:
+      - "[sound]UI_BUTTON_CLICK"
+  # 已经领取后显示的材质
+  claimedMat: "BARRIER"
+  # 菜单的物品配置。可自行添加
+  # 如果不是添加的累计奖励按钮，则请勿设置label与require项，否则会导致玩家刷取奖励！
+  items:
+    back:
+      # 支持自动解析PlaceholderAPI占位符
+      name: "&6返回顶贴菜单"
+      # 物品的材质，不区分大小写，若物品不支持则会显示基岩
+      # 查看可用枚举值：https://pastebin.com/Fe65HZnN
+      mat: "BARRIER"
+      # 支持多个槽位设置，请用列表写法
+      # eg: [11, 12, 13, 14, 15]
+      slot: 22
+      # 1.13版本以上的CustomModelData自定义物品材质的值
+      # 不设置默认为 0
+      cmd: 0
+      # 物品的数量
+      # 不设置默认为 1
+      amount: 1
+      # 物品的描述，支持自动解析PlaceholderAPI占位符
+      # 若不需要lore 则设为 lore: [] 即可
+      lore:
+        - " "
+        - "&7在MineBBS上助力服务器宣传"
+        - " "
+        - "&e点击返回顶贴菜单界面"
+      #============================================================
+      # 可用的动作类型：如果没有安装PlaceholderAPI，则使用%player%代表玩家名
+      #============================================================
+      # [console]give %player_name% diamond -> 以控制台身份执行指令
+      # [player]minebbstopper open -> 以玩家身份执行指令
+      # [op]kit new -> 以op身份执行指令。不建议使用！原理是给予op，执行指令后撤销op。！！若是使用以后出现问题别怪我没提醒过你！！
+      # [tell]你的内容\n下一行的内容 -> 向玩家发送消息，可使用\n可换行
+      # [broadcast]你的内容 -> 向全体玩家发送广播消息。若开启BC，则自动会将广播消息发送至所有子服（前提需安装本插件）
+      # [delay]10 -> 对后面的操作进行延迟操作。单位：秒
+      # [give-money]100.55 -> 给予玩家金币数量。或随机值配置：100.55-200.55
+      # [give-points]10 -> 给予玩家点券数量。只能接着整数值，否则发放失败！！！或随机值配置：100-200
+      # [title]主标题内容 副标题内容 进入时间 停留时间 淡出时间 -> 给玩家发送标题，空格分割参数。时间单位：tick
+      # [bossbar]内容 颜色 持续时间 -> 给玩家展示BOSSBAR。颜色可选值为：PINK,BLUE,RED,GREEN,YELLOW,PURPLE,WHITE；时间单位：秒
+      # [connect]xx服务器 -> 让玩家连接xx服务器，BC专属
+      # [sound]xxx -> 查看可用音效：https://pastebin.com/EfQKLUuN
+      # [close] -> 关闭菜单
+      # [open]main -> 目前有两个菜单 main或reward可选
+      #===========================================================
+      # 支持6种条件运算符：> < >= <= != ==
+      # 自动解析PlaceholderAPI占位符进行比较
+      # 如果匹配，则执行对应的动作。不匹配，则不执行。
+      #===========================================================
+      #
+      # @condition: 内容 运算符 内容  空格不敏感
+      #
+      # [tell]测试的数字大于等于100@condition:%player_level% >= %player_level%
+      # [tell]测试的数字小于100@condition:%player_level% < 100
+      # [tell]测试的数字等于100@condition:%player_level% == 100
+      # [tell]测试的字符串相等@condition:%player_name% == TEST_NAME
+      # [tell]测试的字符串不相等@condition:%player% != TEST_NAME
+      # [tell]玩家有minebbstopper.test权限@condition:%player_has_permission_minebbstopper.test% == yes
+      #=============================================================
+      commands:
+        - "[close]"
+        - "[open]main"
+    # ============================================================
+    #
+    # 奖励配置格式，如需多个奖励，请复制粘贴更改后使用，否则会导致奖励被重复领取！
+    # 奖励的核心配置是 label 与 require 请慎重配置，否则会导致奖励被重复领取！
+    #
+    # ============================================================
+    1:
+      name: "&6顶贴10次累计奖励"
+      mat: "iron_ingot"
+      # 此奖励所代表的标签，可设置1-10的整数。意味着你最多可设置10个累计奖励。
+      label: 1
+      # 领取该奖励所需要的顶贴次数
+      require: 10
+      slot: 10
+      lore:
+        - " "
+        - "&7奖励: 钻石 x10"
+        - " "
+        - "%status%"
+      commands:
+        - "[console]give %player% diamond 10"
+        - "[close]"
+    2:
+      name: "&6顶贴20次累计奖励"
+      mat: "gold_ingot"
+      label: 2
+      require: 20
+      slot: 12
+      lore:
+        - " "
+        - "&7奖励: 钻石 x20"
+        - " "
+        - "%status%"
+      commands:
+        - "[close]"
+        - "[console]give %player% diamond 20"
+    3:
+      name: "&6顶贴30次累计奖励"
+      mat: "diamond"
+      label: 3
+      require: 30
+      slot: 14
+      lore:
+        - " "
+        - "&7奖励: 钻石 x30"
+        - " "
+        - "%status%"
+      commands:
+        - "[close]"
+        - "[console]give %player% diamond 30"
+    4:
+      name: "&6顶贴40次累计奖励"
+      mat: "emerald"
+      label: 4
+      require: 40
+      slot: 16
+      lore:
+        - " "
+        - "&7奖励: 钻石 x40"
+        - " "
+        - "%status%"
+      commands:
+        - "[close]"
+        - "[console]give %player% diamond 40"
+     # 奖励可继续拓展，但最多配置十个。
+     # ！！重点检查label 和 require配置是否无误！！
+     # 示例如下：
+
+#    5: <- 这个地方别与前面的重复了！
+#      name: "&6顶贴50次累计奖励"
+#      mat: "emerald"
+#      label: 5 <- 着重注意！只可配置1-10的整数！不要与前面的重复了！
+#      require: 50 <- 着重注意！这里配置需要的次数！
+#      slot: 16
+#      lore:
+#        - " "
+#        - "&7奖励: 钻石 x50" <- 别忘改奖励
+#        - " "
+#        - "%status%"
+#      commands:
+#        - "[close]"
+#        - "[console]give %player% diamond 50" <- 别忘改奖励
+
+
+
+
+    frame:
+      name: "&6边框"
+      mat: "STAINED_GLASS_PANE"
+      slot: [0,1,2,3,4,5,6,7,8,9,11,13,15,17,18,19,20,21,23,24,25,26]
+      cmd: 0
+      lore: []
+      commands:
+        - "[sound]UI_BUTTON_CLICK"
