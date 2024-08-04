@@ -8,7 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.util.List;
 public class ConfigFile {
     public static String Version,DataType,MySQLHost,MySQLDatabase,MySQLUser,MySQLPassword,url,reconnect,claimSpan,techUrl,proxyIP;
-    public static boolean UpdateCheck,MySQLUseSSL,enableLimit,enableOffdayReward,isExtraRewards,isProxyMode,sendRemindMessage;
+    public static boolean UpdateCheck,MySQLUseSSL,enableLimit,enableOffdayReward,isExtraRewards,isProxyMode,sendRemindMessage,isOldFormat;
     public static int MySQLPort,cooldown,claimTime,openInterval,clickInterval,rankRefreshInterval,limitTimes,proxyPort;
     public static List<String> normalRewardCommands,offdayRewardCommands,offdays;
 
@@ -36,7 +36,7 @@ public class ConfigFile {
         techUrl = config.getString("Setting.techUrl");
         rankRefreshInterval = config.getInt("Setting.rankRefreshInterval");
         sendRemindMessage = config.getBoolean("Setting.sendRemindMessage", true);
-
+        isOldFormat = config.getBoolean("Setting.isOldFormat",false);
         // 奖励的配置
         normalRewardCommands = (List<String>) config.getList("Rewards.normal.commands");
         offdayRewardCommands = (List<String>) config.getList("Rewards.offday.commands");

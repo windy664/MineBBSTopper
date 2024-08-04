@@ -1,5 +1,5 @@
 name: MineBBSTopper
-version: '3.5'
+version: '3.6'
 main: com.mythmc.MineBBSTopper
 api-version: 1.13
 author: "404Yuner"
@@ -9,8 +9,3 @@ commands:
   minebbstopper:
     description: '插件的主要指令'
     aliases: [mt, topper]
-    usage: |
-      /mt url - 获取帖子上次顶贴时间
-      /mt reload - 重载插件
-      /mt open [main/reward] - 打开GUI菜单
-      /mt test [normal/offday] - 测试奖励

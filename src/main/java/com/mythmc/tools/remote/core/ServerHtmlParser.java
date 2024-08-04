@@ -1,8 +1,9 @@
-package com.mythmc.tools.remote;
+package com.mythmc.tools.remote.core;
 
 import com.mythmc.MineBBSTopper;
 import com.mythmc.file.statics.ConfigFile;
 import com.mythmc.tools.Debugger;
+import com.mythmc.tools.remote.core.parser.ParserManager;
 import com.mythmc.tools.utils.TimeUtil;
 import org.bukkit.Bukkit;
 import org.jsoup.Connection;
@@ -15,21 +16,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HtmlParser {
+public class ServerHtmlParser implements ParserManager {
 
-    // 回调接口，用于处理异步任务的结果
-    public interface TimeElementResultHandler {
-        void handleResult(String result); // 处理结果的回调方法
-    }
 
     // 异步获取时间元素的方法
-    public static void fetchTimeElementsAsync(String url, TimeElementResultHandler handler) {
+    public void fetchTimeElementsAsync(TimeElementResultHandler handler) {
         // 使用 Bukkit 的异步任务调度器执行任务
         Bukkit.getScheduler().runTaskAsynchronously(MineBBSTopper.instance, () -> {
             List<String> list = new ArrayList<>(); // 用于存储从网页上提取的时间数据
             try {
                 // 使用 Jsoup 连接到指定的 URL
-                Connection connection = Jsoup.connect(url)
+                Connection connection = Jsoup.connect(ConfigFile.url)
                         .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36") // 设置用户代理
                         .timeout(10000); // 设置超时时间为10秒
                 if (ConfigFile.isProxyMode) connection.proxy(ConfigFile.proxyIP,ConfigFile.proxyPort); // 使用代理

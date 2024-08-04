@@ -1,25 +1,7 @@
 package com.mythmc.commands.command;
 
 import com.mythmc.MineBBSTopper;
-import com.mythmc.api.event.PlayerTopperRewardClaimEvent;
 import com.mythmc.commands.command.sub.*;
-import com.mythmc.commands.gui.RewardGUI;
-import com.mythmc.externs.HookManager;
-import com.mythmc.file.statics.ConfigFile;
-import com.mythmc.file.statics.LangFile;
-import com.mythmc.commands.gui.MainGUI;
-import com.mythmc.externs.hook.placeholders.PlaceholderHook;
-import com.mythmc.impl.cache.TargetManager;
-import com.mythmc.impl.cache.target.GlobalInfo;
-import com.mythmc.impl.cache.target.PlayerInfo;
-import com.mythmc.tools.remote.HtmlParser;
-import com.mythmc.tools.utils.CommandUtil;
-import com.mythmc.tools.Debugger;
-import com.mythmc.tools.utils.MessageUtil;
-import com.mythmc.tools.utils.OffdayUtil;
-import com.mythmc.tools.utils.TimeUtil;
-import eu.decentsoftware.holograms.api.commands.CommandInfo;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,7 +11,7 @@ import org.bukkit.entity.Player;
 import java.util.*;
 
 // 定义一个主类 MainCommands，实现 CommandExecutor 和 TabCompleter 接口
-public class MainCommands implements CommandExecutor, TabCompleter {
+public class MainCommands implements CommandExecutor {
 
     // 定义一个插件实例，MineBBSTopper 类型
     private final MineBBSTopper plugin;
@@ -67,23 +49,4 @@ public class MainCommands implements CommandExecutor, TabCompleter {
         return false;
     }
 
-    @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        List<String> completions = new ArrayList<>();
-        if (args.length == 1) {
-            completions.add("reload");
-            completions.add("test");
-            completions.add("open");
-            completions.add("claim");
-        }
-        if (args.length == 2 && args[0].equals("test")) {
-            completions.add("normal");
-            completions.add("offday");
-        }
-        if (args.length == 2 && args[0].equals("open")) {
-            completions.add("main");
-            completions.add("reward");
-        }
-        return completions;
-    }
 }

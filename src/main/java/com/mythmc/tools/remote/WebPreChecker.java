@@ -2,6 +2,8 @@ package com.mythmc.tools.remote;
 
 import com.mythmc.MineBBSTopper;
 import com.mythmc.file.statics.ConfigFile;
+import com.mythmc.tools.remote.core.ServerHtmlParser;
+import com.mythmc.tools.remote.core.parser.ParserManagerFactory;
 import org.bukkit.Bukkit;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -64,8 +66,7 @@ public class WebPreChecker {
                 if (statusCode == 200) {
                     plugin.logger("§2检查 §8| §a网址预检查成功，成功加载 MineBBSTopper，感谢您的使用!");
                     // 异步获取 HTML 中的时间元素
-                    HtmlParser.fetchTimeElementsAsync(ConfigFile.url, is -> {
-                    });
+                    ParserManagerFactory.getParserManager().fetchTimeElementsAsync(is -> {});
                 } else {
                     // 如果状态码不为 200，表示失败，记录日志并尝试重连
                     plugin.logger("§2检查 §8| §c网址预检查失败，尝试重新连接，网址状态码: " + statusCode);

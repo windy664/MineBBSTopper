@@ -13,7 +13,7 @@ public class Test {
         if (player == null) {
             return false; // 发送者不是玩家
         }
-        if (args.length != 2) {
+        if (args.length == 2) {
             if (player.hasPermission("minebbstopper.test")) {
                 switch (args[1].toLowerCase()) {
                     case "normal":

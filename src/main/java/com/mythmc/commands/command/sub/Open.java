@@ -15,9 +15,9 @@ public class Open {
     // 处理 open 子命令
     public static boolean handle(Player player, String[] args) {
         if (player == null) {
+            Debugger.logger("只能是玩家对象！");
             return false; // 发送者不是玩家
         }
-
         GlobalInfo globalInfo = TargetManager.getGlobalInfo();
         String cooldownTimeStr = globalInfo.getCooldownTimeStr();
         Debugger.logger("从缓存库中获取到下一次可顶贴的时间为 " + cooldownTimeStr);

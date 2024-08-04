@@ -6,7 +6,6 @@ import com.mythmc.commands.command.MainCommands;
 import com.mythmc.events.listener.GUIListener;
 import com.mythmc.externs.hook.hologram.DecentHologramsHook;
 import com.mythmc.impl.cache.TargetManager;
-import com.mythmc.impl.cache.target.GlobalInfo;
 import com.mythmc.impl.database.DatabaseManager;
 import com.mythmc.events.EventsManager;
 import com.mythmc.externs.HookManager;
@@ -21,6 +20,8 @@ import com.mythmc.tools.local.AutoUpdater;
 import com.mythmc.tools.remote.Metrics;
 import com.mythmc.tools.remote.UpdateChecker;
 
+import com.mythmc.tools.remote.core.MineBBSHtmlParser;
+import com.mythmc.tools.remote.core.parser.ParserManagerFactory;
 import com.mythmc.tools.utils.RefreshUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
@@ -46,6 +47,7 @@ public final class MineBBSTopper extends JavaPlugin {
         (new EventsManager(this)).load();
         (new CommandsManager(this)).load();
         (new HookManager(this)).load();
+        (new ParserManagerFactory()).load();
         (new WebPreChecker(this)).start();
         new Metrics(this, 22565).addCustomChart(new Metrics.SingleLineChart("topper_count", () -> TargetManager.getGlobalInfo().getAmount()));
 

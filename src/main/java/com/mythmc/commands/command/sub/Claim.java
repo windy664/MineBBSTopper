@@ -8,7 +8,9 @@ import com.mythmc.impl.cache.TargetManager;
 import com.mythmc.impl.cache.target.GlobalInfo;
 import com.mythmc.impl.cache.target.PlayerInfo;
 import com.mythmc.tools.Debugger;
-import com.mythmc.tools.remote.HtmlParser;
+import com.mythmc.tools.remote.core.ServerHtmlParser;
+import com.mythmc.tools.remote.core.parser.ParserManager;
+import com.mythmc.tools.remote.core.parser.ParserManagerFactory;
 import com.mythmc.tools.utils.CommandUtil;
 import com.mythmc.tools.utils.MessageUtil;
 import com.mythmc.tools.utils.OffdayUtil;
@@ -88,7 +90,7 @@ public class Claim {
                 Debugger.logger("正在为玩家 " + playerName + " 检测顶贴状态，进程锁定中");
 
                 // 异步获取网页中的时间元素
-                HtmlParser.fetchTimeElementsAsync(ConfigFile.url, status -> {
+                ParserManagerFactory.getParserManager().fetchTimeElementsAsync(status -> {
 
                     // 检查获取到的时间元素是否为空
                     if (status != null && !status.isEmpty()) {
