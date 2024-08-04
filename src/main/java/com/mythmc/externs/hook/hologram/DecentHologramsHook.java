@@ -70,9 +70,12 @@ public class DecentHologramsHook {
     }
 
     public static void removeHologram() {
-        // 清空缓存
-        Hologram hologram = DHAPI.getHologram("minebbstopper_rank");
-        if (hologram != null)
-            hologram.delete();
+        if (setupDecentHolograms() && HologramFile.hologramEnable) {
+            // 清空缓存
+            Hologram hologram = DHAPI.getHologram("minebbstopper_rank");
+            if (hologram != null)
+                hologram.delete();
+        }
     }
+
 }
