@@ -1,6 +1,7 @@
 Hologram:
   # 是否启用全息图
-  # 刷新间隔在config.yml内
+  # 刷新间隔在config.yml内配置
+  # 排行榜名次格式在gui/main.yml内配置
   enable: false
   # 暂无其它插件选择
   plugin: DecentHolograms

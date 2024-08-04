@@ -4,6 +4,7 @@ import com.mythmc.commands.CommandsManager;
 import com.mythmc.commands.command.MainCommands;
 
 import com.mythmc.events.listener.GUIListener;
+import com.mythmc.externs.hook.hologram.DecentHologramsHook;
 import com.mythmc.impl.cache.TargetManager;
 import com.mythmc.impl.cache.target.GlobalInfo;
 import com.mythmc.impl.database.DatabaseManager;
@@ -28,7 +29,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class MineBBSTopper extends JavaPlugin {
     public static MineBBSTopper instance;
     private static final String version = Bukkit.getVersion();
-    public static final boolean isLowVersion = version.contains("1.7") || version.contains("1.8") || version.contains("1.9") || version.contains("1.10") || version.contains("1.11") || version.contains("1.12");
+    public static final boolean isLowVersion = version.contains("1.5") || version.contains("1.6") || version.contains("1.7") || version.contains("1.8") || version.contains("1.9") || version.contains("1.10") || version.contains("1.11") || version.contains("1.12");
     public static boolean bungeecord;
     public static final ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
@@ -90,6 +91,7 @@ public final class MineBBSTopper extends JavaPlugin {
     }
 
     public void cacheClear() {
+        DecentHologramsHook.removeHologram();
         HookManager.clear();
         PlaceholderCache.clear();
         GUIListener.lastClickTimes.clear();

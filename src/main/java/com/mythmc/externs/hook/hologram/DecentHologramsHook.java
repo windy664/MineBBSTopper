@@ -4,17 +4,11 @@ import com.mythmc.MineBBSTopper;
 import com.mythmc.externs.hook.placeholders.PlaceholderCache;
 import com.mythmc.file.statics.ConfigFile;
 import com.mythmc.file.statics.HologramFile;
+
 import eu.decentsoftware.holograms.api.DHAPI;
-import eu.decentsoftware.holograms.api.DecentHolograms;
-import eu.decentsoftware.holograms.api.DecentHologramsAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
-import eu.decentsoftware.holograms.api.utils.scheduler.S;
-import eu.decentsoftware.holograms.plugin.DecentHologramsPlugin;
-import org.black_ixx.playerpoints.PlayerPoints;
-import org.black_ixx.playerpoints.PlayerPointsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;

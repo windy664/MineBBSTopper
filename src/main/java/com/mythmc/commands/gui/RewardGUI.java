@@ -153,6 +153,7 @@ public class RewardGUI implements Listener {
             // 获取槽位编号，并将物品设置到相应的槽位
             Object slotObj = itemSection.get("slot");
             if (slotObj instanceof List) {
+                @SuppressWarnings("unchecked")
                 List<Integer> slots = (List<Integer>) slotObj;
                 for (int slot : slots) {
                     rewardGUI.setItem(slot, itemStack);

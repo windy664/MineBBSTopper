@@ -1,21 +1,17 @@
 package com.mythmc.commands.gui;
 
 import com.mythmc.MineBBSTopper;
-import com.mythmc.externs.HookManager;
 import com.mythmc.externs.hook.placeholders.PlaceholderCache;
-import com.mythmc.file.statics.ConfigFile;
 import com.mythmc.file.statics.GUIFile;
-import com.mythmc.externs.hook.placeholders.PlaceholderHook;
 import com.mythmc.impl.cache.TargetManager;
 import com.mythmc.impl.cache.target.GlobalInfo;
 import com.mythmc.impl.cache.target.PlayerInfo;
 import com.mythmc.tools.utils.*;
+
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -141,6 +137,7 @@ public class MainGUI implements Listener {
             // 设置槽位物品
             Object slotObj = itemSection.get("slot");
             if (slotObj instanceof List) {
+                @SuppressWarnings("unchecked")
                 List<Integer> slots = (List<Integer>) slotObj;
                 for (int slot : slots) {
                     mainGUI.setItem(slot, itemStack); // 将物品设置到每个槽位
